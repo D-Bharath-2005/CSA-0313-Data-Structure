@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define size 20
+
+int stk[size];
+int top=-1;
+
+void push(int ch)
+{
+	stk[++top]=ch;
+}
+int pop()
+{
+	return stk[top--];
+}
+int main()
+{
+	char in[50],op;
+	int t,i,l,op1,op2,result;
+	printf("enter the expression:");
+	gets(in);
+	l=strlen(in);
+	for(i=0;i<l;i++)
+	{
+		if(isdigit(in[i]))
+		{
+			t=in[i]-'0';
+			push((t));
+		}
+			
+		else
+		{
+			op=in[i];
+			op2=pop();
+			op1=pop();
+			switch(op)
+			{
+				case '+':push(op1+op2);break;
+				case '-':push(op1-op2);break;
+				case '*':push(op1*op2);break;
+				case '/':push(op1/op2);break;
+			}
+		}
+	}
+	result=pop();
+	printf("the ouput=%d",result);
+	return 0;
+}
