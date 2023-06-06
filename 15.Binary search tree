@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<malloc.h>
+struct node {
+   int data;
+   struct node *left, *right;
+}*root=NULL,*newnode;
+
+
+
+struct node * insert(struct node*,int ele)
+{
+  if(root==NULL)
+  {
+  	newnode=(struct node*)malloc(sizeof(struct node));
+  	newnode->data=ele;
+  	newnode->left=NULL;
+  	newnode->right=NULL;
+  	return(newnode);
+  }
+  else if(ele> root->data)
+   root->right=insert(root->right,ele);
+  else if(ele <root->data)
+   root->left=insert(root->left,ele);
+   
+   return(root);
+}
+
+
+void inorder(struct node *root)
+{
+   if (root != NULL) 
+   {
+      inorder(root->left);
+      printf("%d\t ", root->data);
+      inorder(root->right);
+   }
+}
+void preorder(struct node *root)
+{
+   if (root != NULL) 
+   {
+      printf("%d\t ", root->data);
+      preorder(root->left);
+      preorder(root->right);
+   }
+}
+void postorder(struct node *root)
+{
+   if (root != NULL) 
+   {
+     
+      postorder(root->left);
+      postorder(root->right);
+      printf("%d \t ", root->data);
+   }
+}
+
+
+int main ( )
+{
+	int opt,value;
+	do
+	{
+		printf ("\n** Main Menu **\n\n" );
+		printf ("1. insert\n2. inorder\n3.preorder\n4. postorder\n5.exit\n" );
+		printf("InWhich option you want to perform?");
+		scanf ("%d", &opt);
+		switch(opt)
+		{
+		    case 1:	struct node * insert(struct node*,int ele);
+				printf("enter the value:");
+				scanf("%d",&value);
+				root=insert(root,value);
+		    	break;
+			case 2:inorder (root); break;
+			case 3:preorder(root);break;
+			case 4:postorder(root);break;
+			case 5:exit (0);
+			default: printf( "please enter the option between 1 to 5 ");
+		}
+	}while (opt>=1 &&opt<=5);
+}
