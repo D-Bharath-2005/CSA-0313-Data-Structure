@@ -23,7 +23,7 @@ void insert(int key) {
     }
 
     if (hashTable[hashValue] == -1) {
-        hashTable[hashValue] = key;  // Insert key into the empty slot
+        hashTable[hashValue] = key;  
     } else {
         printf("Key %d already exists in the hash table.\n", key);
     }
